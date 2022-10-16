@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using TodoDemo.Data;
 
 namespace TodoDemo.Controllers;
 
@@ -6,21 +7,19 @@ namespace TodoDemo.Controllers;
 [Route("[controller]")]
 public class TodoController : ControllerBase
 {
-    private readonly ILogger<TodoController> _logger;
+    private readonly ILogger<TodoController> logger;
+    private readonly ISingletonRepo repo;
 
-    public TodoController(ILogger<TodoController> logger)
+    public TodoController(ILogger<TodoController> logger, ISingletonRepo repo)
     {
-        _logger = logger;
+        this.repo = repo;
+        this.logger = logger;
     }
 
     [HttpGet]
     public IEnumerable<TodoItem> Get()
     {
-        return new List<TodoItem> { 
-            new TodoItem { Name = "Task1", Priority = 1, Status = TodoStatus.NotStarted }, 
-            new TodoItem { Name = "Task2", Priority = 2, Status = TodoStatus.InProgress }, 
-            new TodoItem { Name = "Task3", Priority = 3, Status = TodoStatus.Completed },
-        };
+        return repo?.GetAll();
     }
     [HttpPut]
     public void Put()

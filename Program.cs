@@ -1,3 +1,5 @@
+using TodoDemo.Data;
+
 namespace TodoDemo
 {
     public class Program
@@ -9,6 +11,8 @@ namespace TodoDemo
             // Add services to the container.
 
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddSingleton<ISingletonRepo, InMemoryRepo>();
 
             var app = builder.Build();
 
