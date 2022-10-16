@@ -16,7 +16,11 @@ public class TodoController : ControllerBase
     [HttpGet]
     public IEnumerable<TodoItem> Get()
     {
-        return null;
+        return new List<TodoItem> { 
+            new TodoItem { Name = "Task1", Priority = 1, Status = TodoStatus.NotStarted }, 
+            new TodoItem { Name = "Task2", Priority = 2, Status = TodoStatus.InProgress }, 
+            new TodoItem { Name = "Task3", Priority = 3, Status = TodoStatus.Completed },
+        };
     }
     [HttpPut]
     public void Put()
