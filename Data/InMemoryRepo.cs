@@ -4,6 +4,7 @@ namespace TodoDemo.Data
 {
     public interface ISingletonRepo
     {
+        int Count { get; }
         IList<TodoItem> GetAll();
 
         void InsertItem(TodoItem item);
@@ -27,12 +28,7 @@ namespace TodoDemo.Data
 
         public InMemoryRepo()
         {
-            items = new TodoItemKeyed
-            {
-                new TodoItem { Name = "Task1", Priority = 1, Status = TodoStatus.NotStarted },
-                new TodoItem { Name = "Task2", Priority = 2, Status = TodoStatus.InProgress },
-                new TodoItem { Name = "Task3", Priority = 3, Status = TodoStatus.Completed },
-            };
+            items = new TodoItemKeyed();
         }
 
         #region crud
