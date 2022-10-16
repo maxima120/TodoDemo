@@ -1,0 +1,22 @@
+<h1 id="tableLabel">Todo</h1>
+
+<p>This component demonstrates fetching todo items</p>
+
+<p *ngIf="!items"><em>Loading...</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="items">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Priority</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of items">
+      <td>{{ item.name }}</td>
+      <td>{{ item.priority }}</td>
+      <td>{{ item.status }}</td>
+    </tr>
+  </tbody>
+</table>
