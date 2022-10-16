@@ -17,20 +17,26 @@ public class TodoController : ControllerBase
     }
 
     [HttpGet]
-    public IEnumerable<TodoItem> Get()
+    public IEnumerable<TodoItem> GetAll()
     {
         return repo?.GetAll();
     }
-    [HttpPut]
-    public void Put()
-    {
-    }
+
     [HttpPost]
-    public void Post()
+    public void InsertItem([FromBody] TodoItem item)
     {
+        repo?.InsertItem(item);
     }
-    [HttpDelete]
-    public void Delete()
+
+    [HttpPut]
+    public void UpdateItem([FromBody] TodoItem item)
     {
+        repo?.UpdateItem(item);
+    }
+    
+    [HttpDelete]
+    public void DeleteItem(string name)
+    {
+        repo?.DeleteItem(name);
     }
 }
